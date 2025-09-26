@@ -42,6 +42,9 @@ window.onload = function init()
     gl.vertexAttribPointer( vPosition, 2, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vPosition );
 
+    var uCol = gl.getUniformLocation( program, "u_Color" );
+    gl.uniform4f(uCol, 0.4, 0.4, 1.0, 1.0);
+
     render();
 };
 
