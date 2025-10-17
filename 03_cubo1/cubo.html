@@ -1,0 +1,80 @@
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fColor;
+
+uniform float thetax;
+uniform float thetay;
+uniform float thetaz;
+
+void main() 
+{
+    float rtx = radians(thetax);
+    float rty = radians(thetay);
+    float rtz = radians(thetaz);
+
+    float cx = cos(rtx);
+    float sx = sin(rtx);
+
+    float cy = cos(rty);
+    float sy = sin(rty);
+    
+    float cz = cos(rtz);
+    float sz = sin(rtz);
+
+    mat4 r1 = mat4(
+        cx, sx, 0, 0,
+        -sx, cx, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    );
+
+    mat4 r2 = mat4(
+        cy, 0, sy, 0,
+        0, 1, 0, 0,
+        -sy, 0, cy, 0,
+        0, 0, 0, 1
+    );
+
+    mat4 r3 = mat4(
+        1, 0, 0, 0,
+        0, cz, sz, 0,
+        0, -sz, cz, 0,
+        0, 0, 0, 1
+    );
+
+    fColor = vColor;
+    gl_Position = r1 * r2 * r3 *vPosition;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+   
+varying vec4 fColor;
+
+void
+main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="cubo.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+   
+<br/>
+
+</body>
+</html>
