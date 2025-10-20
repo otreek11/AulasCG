@@ -5,14 +5,14 @@ var gl;
 var NumVertices  = 36;
 
 var vertices = [
-    vec4( 0.5,  0.5,  0.5, 1.0 ),    // 0
+    vec4( 0.5,  0.5,  0.5, 1.0),     // 0
     vec4(-0.5,  0.5,  0.5, 1.0),     // 1
     vec4(-0.5, -0.5,  0.5, 1.0),     // 2
     vec4( 0.5, -0.5,  0.5, 1.0),     // 3
 
-    vec4( 0.5,  0.5, -0.5, 1.0),     // 0
-    vec4(-0.5,  0.5, -0.5, 1.0),     // 1
-    vec4(-0.5, -0.5, -0.5, 1.0),     // 2
+    vec4( 0.5,  0.5, -0.5, 1.0),     // 4
+    vec4(-0.5,  0.5, -0.5, 1.0),     // 5
+    vec4(-0.5, -0.5, -0.5, 1.0),     // 6
     vec4( 0.5, -0.5, -0.5, 1.0),     // 7
 ];
 
@@ -60,7 +60,7 @@ window.onload = function init()
     init_vertice_face(4, 0, 3, 7); // lateral direita
     init_vertice_face(1, 5, 6, 2); // lateral esquerda
     init_vertice_face(5, 4, 7, 6); // traseira
-    init_vertice_face(0, 1, 5, 4); // cima
+    init_vertice_face(4, 5, 1, 0); // cima
     init_vertice_face(6, 7, 3, 2); // baixo
 
     console.log(flatten(sh_vertices));
